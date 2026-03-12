@@ -1,0 +1,85 @@
+Problem
+You are given an array 
+ of 
+ integers. Your task is to implement a sorting algorithm that arranges the numbers in the array based on following conditions and return that array:
+1. Numbers with an even count of set bits should appear first in ascending order.
+2. Following that, numbers with an odd count of set bits should be arranged in ascending order.
+
+Input Format:
+
+Note: This is the input format that you must use to provide custom input (available above the Compile and Test button).
+
+The first line contains 
+ denoting the number of test cases. 
+ also specifies the number of times you have to run the solve function on a different set of inputs.
+For each test case:
+
+The first line contains the integer 
+.
+The second line contains the array 
+ of length 
+Output Format:
+For each test case, print the answer in a new line. 
+
+Constraints:
+
+
+Sample Input
+1
+6
+5 2 8 12 7 6
+Sample Output
+5 6 12 2 7 8
+
+program:
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int t = Integer.parseInt(br.readLine()); // number of test cases
+        
+        while(t-- > 0){
+            
+            int n = Integer.parseInt(br.readLine()); // array size
+            String[] input = br.readLine().split(" ");
+            
+            int[] arr = new int[n];
+            
+            for(int i = 0; i < n; i++){
+                arr[i] = Integer.parseInt(input[i]);
+            }
+            
+            List<Integer> even = new ArrayList<>();
+            List<Integer> odd = new ArrayList<>();
+            
+            for(int num : arr){
+                int bits = Integer.bitCount(num);
+                
+                if(bits % 2 == 0){
+                    even.add(num);
+                } else {
+                    odd.add(num);
+                }
+            }
+            
+            Collections.sort(even);
+            Collections.sort(odd);
+            
+            for(int num : even){
+                System.out.print(num + " ");
+            }
+            
+            for(int num : odd){
+                System.out.print(num + " ");
+            }
+            
+            System.out.println();
+        }
+    }
+}
